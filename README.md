@@ -1,2 +1,3 @@
-# gif-progressor-web
-Web server of Gif-Progressor
+# Gif Progressor Web
+
+Web server of [Gif-Progressor](https://github.com/cycoe/Gif-Progressor)
