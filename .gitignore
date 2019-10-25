@@ -133,11 +133,12 @@ venv.bak/
 
 # mypy
 .mypy_cache/
-<<<<<<< HEAD
-=======
 .dmypy.json
 dmypy.json
 
 # Pyre type checker
 .pyre/
->>>>>>> init
+
+# images cache for gif-progressor-web
+images/
+
