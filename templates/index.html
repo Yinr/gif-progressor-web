@@ -40,8 +40,27 @@
 
     <div class="upload-form">
         <form method="POST" enctype="multipart/form-data">
-            <input type="file" name="file">
-            <input type="submit" value="Upload">
+            <p>
+                <input id="input-color" type="color" name="color">
+                <select id="input-position" name="position">
+                    <option value="1">topLeft</option>
+                    <option value="2">top</option>
+                    <option value="3">topRight</option>
+                    <option value="4">bottomLeft</option>
+                    <option value="5">bottom</option>
+                    <option value="6">bottomRight</option>
+                    <option value="7">leftTop</option>
+                    <option value="8">left</option>
+                    <option value="9">leftBottom</option>
+                    <option value="10">rightTop</option>
+                    <option value="11">right</option>
+                    <option value="12">rightBottom</option>
+                </select>
+            </p>
+            <p>
+                <input type="file" name="file">
+                <input type="submit" value="Upload">
+            </p>
         </form>
     </div>
 
@@ -58,6 +77,12 @@
         <span>{{ error_message }}</span>
     </div>
     {% endif %}
+
+    <script>
+        document.getElementById("input-color").value = "{{ color }}" || "#cb5050";
+        document.getElementById("input-position").value = "{{ position }}" || "5";
+
+    </script>
 
 </body>
 

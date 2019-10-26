@@ -52,7 +52,10 @@ def process():
     # print("File saved to to:", destination)
     upload.save(destination)
 
-    progressor = Progressor().setPosition(Position.bottom)
+    position = request.form['position']
+    color = request.form['color']
+
+    progressor = Progressor().setPosition(int(position))
     progressor = progressor.setColor((255, 0, 0, 100))
     progressor.handle(destination)
     if progressor:
@@ -60,7 +63,7 @@ def process():
 
     filepath = '/images/' + filename
 
-    return render_template("index.html", upload_image=filepath)
+    return render_template("index.html", upload_image=filepath, color=color, position=position)
 
 
 @app.route('/images/<filename>')
