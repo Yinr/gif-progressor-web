@@ -1,0 +1,22 @@
+body {
+    text-align: center;
+}
+
+.header {
+    text-align: center;
+}
+
+#logo {
+    height: 50px;
+    margin: 20px;
+}
+
+.error {
+    position: absolute;
+    background-color: #FF000064;
+    width: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+    padding: 4px;
+}

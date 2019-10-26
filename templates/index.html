@@ -5,31 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>GIF Progressor</title>
-    <style>
-        body {
-            text-align: center;
-        }
-
-        .header {
-            text-align: center;
-        }
-
-        #logo {
-            height: 50px;
-            margin: 20px;
-        }
-
-        .error {
-            position: absolute;
-            background-color: #FF000064;
-            width: 100%;
-            top: 0;
-            left: 0;
-            text-align: center;
-            padding: 4px;
-        }
-
-    </style>
+    <link type="text/css" rel="stylesheet" href="/assets/style.css" />
 </head>
 
 <body>
@@ -79,7 +55,7 @@
     {% endif %}
 
     <script>
-        document.getElementById("input-color").value = "{{ color }}" || "#cb5050";
+        document.getElementById("input-color").value = "{{ color }}" || "#ffa0a0";
         document.getElementById("input-position").value = "{{ position }}" || "5";
 
     </script>
