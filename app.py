@@ -53,9 +53,9 @@ def process():
     upload.save(destination)
 
     position = request.form['position']
-    color = request.form['color']
+    color = request.form['color'] + '64'
 
-    progressor = Progressor(pos=int(position), color=(255, 0, 0, 100))
+    progressor = Progressor(pos=int(position), color=color)
     progressor.handle(destination)
     if progressor:
         progressor.save(destination)
