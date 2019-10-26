@@ -5,26 +5,57 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>GIF Progressor</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .header {
+            text-align: center;
+        }
+
+        #logo {
+            height: 50px;
+            margin: 20px;
+        }
+
+        .error {
+            position: absolute;
+            background-color: #FF000064;
+            width: 100%;
+            top: 0;
+            left: 0;
+            text-align: center;
+            padding: 4px;
+        }
+
+    </style>
 </head>
 
 <body>
-    <div>
-        GIF Progressor
+    <div class="header">
+        <img id="logo" src="/assets/gf_logo.png" alt="GIF Progressor" />
+        <!-- GIF Progressor -->
     </div>
 
-    {% if error_message %}
-    <div class="error">
-        <p>{{ error_message }}</p>
+    <div class="upload-form">
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <input type="submit" value="Upload">
+        </form>
     </div>
-    {% endif %}
 
-    <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="file">
-        <input type="submit" value="Upload">
-    </form>
+    <!-- Show Processed Images -->
     {% if upload_image %}
     <div>
         <img src="{{ upload_image }}">
+    </div>
+    {% endif %}
+
+    <!-- Error Messages -->
+    {% if error_message %}
+    <div class="error">
+        <span>{{ error_message }}</span>
     </div>
     {% endif %}
 
