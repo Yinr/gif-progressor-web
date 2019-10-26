@@ -5,7 +5,7 @@ import os
 import time
 from flask import Flask, request, render_template, send_from_directory
 from werkzeug import secure_filename
-from GifProgressor import Progressor, Position
+from GifProgressor import Progressor
 
 ALLOWED_EXTENSIONS = set(['gif'])
 # APP_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -55,15 +55,17 @@ def process():
     position = request.form['position']
     color = request.form['color']
 
-    progressor = Progressor().setPosition(int(position))
-    progressor = progressor.setColor((255, 0, 0, 100))
+    progressor = Progressor(pos=int(position), color=(255, 0, 0, 100))
     progressor.handle(destination)
     if progressor:
         progressor.save(destination)
 
     filepath = '/images/' + filename
 
-    return render_template("index.html", upload_image=filepath, color=color, position=position)
+    return render_template("index.html",
+                           upload_image=filepath,
+                           color=color,
+                           position=position)
 
 
 @app.route('/images/<filename>')
