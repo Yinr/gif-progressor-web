@@ -17,7 +17,11 @@
     <div class="upload-form">
         <form method="POST" enctype="multipart/form-data">
             <p>
+                <span> Select Color: </span>
                 <input id="input-color" type="color" name="color">
+            </p>
+            <p>
+                <span> Select Progress Bar Position: </span>
                 <select id="input-position" name="position">
                     <option value="1">topLeft</option>
                     <option value="2">top</option>
@@ -40,15 +44,15 @@
         </form>
     </div>
 
-    <!-- Show Processed Images -->
     {% if upload_image %}
-    <div>
+    <!-- Show Processed Images -->
+    <div class="output-img">
         <img src="{{ upload_image }}">
     </div>
     {% endif %}
 
-    <!-- Error Messages -->
     {% if error_message %}
+    <!-- Error Messages -->
     <div class="error">
         <span>{{ error_message }}</span>
     </div>

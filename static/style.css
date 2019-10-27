@@ -8,7 +8,11 @@ body {
 
 #logo {
     height: 50px;
-    margin: 20px;
+    margin: 20px 20px 10px;
+}
+
+.output-img {
+    max-width: 100%;
 }
 
 .error {

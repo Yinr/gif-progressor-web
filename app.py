@@ -31,14 +31,18 @@ def index():
 
 @app.route("/", methods=["POST"])
 def process():
-
-    # retrieve file from html file-picker
+    position = request.form['position']
+    color = request.form['color']
     upload = request.files.getlist("file")[0]
+    print(upload)
+
     print("File name: {}".format(upload.filename))
     if not allowed_file(upload.filename):
         error_message = "The selected file is not supported"
         return render_template('index.html',
-                               error_message=error_message), 400
+                               error_message=error_message,
+                               color=color,
+                               position=position), 400
 
     secureFilename = secure_filename(upload.filename)
     # TODO: customize secure filename
@@ -52,10 +56,7 @@ def process():
     # print("File saved to to:", destination)
     upload.save(destination)
 
-    position = request.form['position']
-    color = request.form['color'] + '64'
-
-    progressor = Progressor(pos=int(position), color=color)
+    progressor = Progressor(pos=int(position), color=color + "64")
     progressor.handle(destination)
     if progressor:
         progressor.save(destination)
