@@ -10,5 +10,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    - name: Update git submodule
+      run: git submodule init && git submodule update
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag gif-progressor-web:$(date +%s)
