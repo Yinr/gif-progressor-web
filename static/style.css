@@ -1,18 +1,57 @@
 body {
+    margin: 10px;
+}
+
+.logo {
     text-align: center;
 }
 
-.header {
-    text-align: center;
-}
-
-#logo {
-    height: 50px;
+.logo img {
+    height: 75px;
     margin: 20px 20px 10px;
+}
+
+.description {
+    text-align: center;
+    margin: 20px;
+}
+
+.layui-form .layui-row {
+    margin: 20px;
+}
+
+.file-upload {
+    text-align: center;
+}
+
+#file-select {
+    text-align: left;
+}
+
+#file-upload {
+    text-align: right;
+}
+
+.output-img {
+    margin: 20px;
 }
 
 .output-img img {
     max-width: 100%;
+}
+
+.image-field {
+    text-align: center;
+    margin: 10px;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.warning-quote {
+    border-left-color: #ff5722;
 }
 
 .error {
@@ -23,4 +62,17 @@ body {
     left: 0;
     text-align: center;
     padding: 4px;
+}
+
+.fork-github {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 100;
+}
+
+@media (max-width: 475px) {
+    body {
+        width: 475px;
+    }
 }

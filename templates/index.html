@@ -5,65 +5,157 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>GIF Progressor</title>
+    <link rel="icon" href="/static/gp_logo.png">
+    <link rel="stylesheet" href="/layui/css/layui.css">
     <link type="text/css" rel="stylesheet" href="/assets/style.css" />
 </head>
 
 <body>
-    <div class="header">
-        <img id="logo" src="/assets/gf_logo.png" alt="GIF Progressor" />
-        <!-- GIF Progressor -->
+    <a class="fork-github" href="https://github.com/Yinr/gif-progressor-web">
+        <img width="149" height="149"
+            src="https://github.blog/wp-content/uploads/2008/12/forkme_right_gray_6d6d6d.png?resize=149%2C149"
+            class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1">
+    </a>
+
+    <div class="layui-container layui-row">
+        <div class="layui-col-md8 layui-col-md-offset2 layui-col-sm10 layui-col-sm-offset1">
+            <div class="logo layui-row">
+                <img src="/assets/gp_logo.png" alt="GIF Progressor" />
+            </div>
+            <div class="description layui-row">
+                <p>A tool to add progress bar into gif.</p>
+            </div>
+
+            <div class="configure-form layui-form">
+                <div class="layui-row color-config">
+                    <!-- Color Configuration -->
+                    <div class="">
+                        <span>Select Progress Bar Color: </span>
+                        <div id="color-picker" class="layui-input-inline"></div>
+                        <input id="input-color" class="layui-hide" type="text" name="color">
+                    </div>
+                </div>
+
+                <div class="layui-row position-config">
+                    <!-- Position Configuration -->
+                    <div class="">
+                        <span>Select Progress Bar Position: </span>
+                        <div class="layui-input-inline">
+                            <select id="input-position" name="position">
+                                <option value="1">topLeft</option>
+                                <option value="2">top</option>
+                                <option value="3">topRight</option>
+                                <option value="4">bottomLeft</option>
+                                <option value="5">bottom</option>
+                                <option value="6">bottomRight</option>
+                                <option value="7">leftTop</option>
+                                <option value="8">left</option>
+                                <option value="9">leftBottom</option>
+                                <option value="10">rightTop</option>
+                                <option value="11">right</option>
+                                <option value="12">rightBottom</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- File Uplaod -->
+                <div class="file-upload layui-row">
+                    <div id="file-select" class="layui-col-sm6 layui-col-xs6">
+                        <button type="button" class="layui-btn" id="file-upload">
+                            <i class="layui-icon layui-icon-picture"></i>Select GIF
+                        </button>
+                    </div>
+                    <div id="file-upload" class="layui-col-sm6 layui-col-xs6">
+                        <button type="button" class="layui-btn" id="submit">
+                            <i class="layui-icon layui-icon-ok"></i>Upload
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Output Images -->
+            <fieldset id="output-fieldset" class="layui-elem-field layui-field-title layui-hide">
+                <legend>Outputs:</legend>
+                <div class="image-field layui-field-box">
+                    <div class="output-img">
+                        <img src="">
+                    </div>
+                </div>
+                <blockquote class="layui-elem-quote warning-quote">
+                    ATTENTION: Uploaded images will be deleted automatically, please download as soon as possible.
+                </blockquote>
+            </fieldset>
+
+            {% if error_message %}
+            <!-- Error Messages -->
+            <div class="error">
+                <span>{{ error_message }}</span>
+            </div>
+            {% endif %}
+
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>Examples</legend>
+                <div class="image-field layui-field-box">
+                    Coming soon...
+                </div>
+            </fieldset>
+            <hr>
+        </div>
     </div>
 
-    <div class="upload-form">
-        <form method="POST" enctype="multipart/form-data">
-            <p>
-                <span> Select Color: </span>
-                <input id="input-color" type="color" name="color">
-            </p>
-            <p>
-                <span> Select Progress Bar Position: </span>
-                <select id="input-position" name="position">
-                    <option value="1">topLeft</option>
-                    <option value="2">top</option>
-                    <option value="3">topRight</option>
-                    <option value="4">bottomLeft</option>
-                    <option value="5">bottom</option>
-                    <option value="6">bottomRight</option>
-                    <option value="7">leftTop</option>
-                    <option value="8">left</option>
-                    <option value="9">leftBottom</option>
-                    <option value="10">rightTop</option>
-                    <option value="11">right</option>
-                    <option value="12">rightBottom</option>
-                </select>
-            </p>
-            <p>
-                <input type="file" name="file">
-                <input type="submit" value="Upload">
-            </p>
-        </form>
+    <div class="footer">
+        {% include "footer.html" %}
     </div>
 
-    {% if upload_image %}
-    <!-- Show Processed Images -->
-    <div class="output-img">
-        <img src="{{ upload_image }}">
-    </div>
-    {% endif %}
 
-    {% if error_message %}
-    <!-- Error Messages -->
-    <div class="error">
-        <span>{{ error_message }}</span>
-    </div>
-    {% endif %}
-
+    <script src="/assets/utils.js"></script>
+    <script src="/layui/layui.js"></script>
     <script>
-        document.getElementById("input-color").value = "{{ color }}" || "#ffa0a0";
-        document.getElementById("input-position").value = "{{ position }}" || "5";
+        let DEFAULT_COLOR = "#ff6060cc",
+            DEFAULT_POSITION = "5";
+        document.getElementById("input-position").value = "{{ position }}" || DEFAULT_POSITION;
+        document.getElementById("input-color").value = "{{ color }}" || DEFAULT_COLOR;
+
+        layui.use(['form', 'colorpicker', 'upload'], function () {
+            var form = layui.form,
+                colorpicker = layui.colorpicker,
+                upload = layui.upload;
+
+            colorpicker.render({
+                elem: '#color-picker',
+                color: '{{ color }}' || DEFAULT_COLOR,
+                format: 'rgb',
+                alpha: true,
+                change: function (color) {
+                    let colorHex = getColorHex(color);
+                    document.getElementById("input-color").value = colorHex;
+                }
+            });
+
+            var uploadInst = upload.render({
+                elem: '#file-upload',
+                url: '/',
+                method: 'POST',
+                data: {
+                    color: function () {
+                        return document.getElementById('input-color').value;
+                    },
+                    position: function () {
+                        return document.getElementById('input-position').value;
+                    }
+                },
+                exts: 'gif',
+                auto: false,
+                bindAction: '#submit',
+                done: function (res) {
+                    document.querySelector('.output-img img').src = res.data.src;
+                    document.querySelector('#output-fieldset').classList.remove('layui-hide');
+                }
+            });
+        });
 
     </script>
-
 </body>
 
 </html>
