@@ -17,19 +17,16 @@ body {
 }
 
 .layui-form .layui-row {
-    margin: 20px;
+    margin: 10px;
 }
 
 .file-upload {
     text-align: center;
 }
 
-#file-select {
-    text-align: left;
-}
-
-#file-upload {
-    text-align: right;
+.configure-form button {
+    text-align: center;
+    margin: 5px;
 }
 
 .output-img {
@@ -71,8 +68,5 @@ body {
     z-index: 100;
 }
 
-@media (max-width: 475px) {
-    body {
-        width: 475px;
-    }
+@media (max-width: 768px) {
 }
