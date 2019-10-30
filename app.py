@@ -4,7 +4,7 @@
 import os
 import time
 from flask import Flask, request, render_template, send_from_directory
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 from GifProgressor import Progressor
 
 ALLOWED_EXTENSIONS = set(['gif'])
