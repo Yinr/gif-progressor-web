@@ -156,13 +156,20 @@
                     submitIcon.classList.add('layui-icon-loading');
                 },
                 done: (res) => {
-                    let submitBtn = document.getElementById('submit');
+                    let imgSrc = res.data.src;
+                    let imgField = document.getElementById('output-fieldset'),
+                        imgElement = imgField.getElementsByTagName('img')[0],
+                        submitBtn = document.getElementById('submit'),
+                        submitIcon = submitBtn.getElementsByTagName('i')[0];
+                    layui.img(imgSrc, () => {
+                        imgElement.src = imgSrc;
+                        imgField.classList.remove('layui-hide');
+                    }, () => {
+                        layui.hint().error('Image loading failed');
+                    })
                     submitBtn.classList.remove('layui-disabled');
-                    let submitIcon = submitBtn.getElementsByTagName('i')[0];
                     submitIcon.classList.remove('layui-icon-loading');
                     submitIcon.classList.add('layui-icon-ok');
-                    document.querySelector('.output-img img').src = res.data.src;
-                    document.querySelector('#output-fieldset').classList.remove('layui-hide');
                 }
             });
         });
