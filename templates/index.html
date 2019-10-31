@@ -148,7 +148,19 @@
                 exts: 'gif',
                 auto: false,
                 bindAction: '#submit',
-                done: function (res) {
+                before: (obj) => {
+                    let submitBtn = document.getElementById('submit');
+                    submitBtn.classList.add('layui-disabled');
+                    let submitIcon = submitBtn.getElementsByTagName('i')[0];
+                    submitIcon.classList.remove('layui-icon-ok');
+                    submitIcon.classList.add('layui-icon-loading');
+                },
+                done: (res) => {
+                    let submitBtn = document.getElementById('submit');
+                    submitBtn.classList.remove('layui-disabled');
+                    let submitIcon = submitBtn.getElementsByTagName('i')[0];
+                    submitIcon.classList.remove('layui-icon-loading');
+                    submitIcon.classList.add('layui-icon-ok');
                     document.querySelector('.output-img img').src = res.data.src;
                     document.querySelector('#output-fieldset').classList.remove('layui-hide');
                 }
