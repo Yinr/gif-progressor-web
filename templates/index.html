@@ -127,7 +127,7 @@
                 color: '{{ color }}' || DEFAULT_COLOR,
                 format: 'rgb',
                 alpha: true,
-                change: function (color) {
+                done: function (color) {
                     let colorHex = getColorHex(color);
                     document.getElementById("input-color").value = colorHex;
                 }
