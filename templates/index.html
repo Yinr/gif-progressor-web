@@ -79,7 +79,12 @@
                 <legend>Outputs:</legend>
                 <div class="image-field layui-field-box">
                     <div class="output-img">
-                        <img src="">
+                        <img class="layui-hide" src="">
+                        <div id="img-loading">
+                            <i class="layui-icon layui-icon-loading-1"></i>
+                            <br>
+                            <span class="layui-word-aux">Loading...</span>
+                        </div>
                     </div>
                 </div>
                 <blockquote class="layui-elem-quote warning-quote">
@@ -159,17 +164,26 @@
                     let imgSrc = res.data.src;
                     let imgField = document.getElementById('output-fieldset'),
                         imgElement = imgField.getElementsByTagName('img')[0],
+                        imgLoading = document.getElementById('img-loading'),
                         submitBtn = document.getElementById('submit'),
                         submitIcon = submitBtn.getElementsByTagName('i')[0];
+                    imgElement.classList.add('layui-hide');
+                    imgLoading.classList.remove('layui-hide');
+                    imgField.classList.remove('layui-hide');
                     layui.img(imgSrc, () => {
                         imgElement.src = imgSrc;
-                        imgField.classList.remove('layui-hide');
+                        imgLoading.classList.add('layui-hide');
+                        imgElement.classList.remove('layui-hide');
+                        submitBtn.classList.remove('layui-disabled');
+                        submitIcon.classList.remove('layui-icon-loading');
+                        submitIcon.classList.add('layui-icon-ok');
                     }, () => {
                         layui.hint().error('Image loading failed');
+                        imgField.classList.add('layui-hide');
+                        submitBtn.classList.remove('layui-disabled');
+                        submitIcon.classList.remove('layui-icon-loading');
+                        submitIcon.classList.add('layui-icon-ok');
                     })
-                    submitBtn.classList.remove('layui-disabled');
-                    submitIcon.classList.remove('layui-icon-loading');
-                    submitIcon.classList.add('layui-icon-ok');
                 }
             });
         });
