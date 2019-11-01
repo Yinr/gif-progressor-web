@@ -29,6 +29,19 @@ body {
     margin: 5px;
 }
 
+.config-label {
+    padding-right: 7px;
+}
+
+#width-config {
+    display: flex;
+    align-items: center;
+}
+
+#width-slider {
+    flex: 1 1 auto;
+}
+
 .output-img {
     margin: 20px;
 }
@@ -66,7 +79,4 @@ body {
     top: 0;
     right: 0;
     z-index: 100;
-}
-
-@media (max-width: 768px) {
 }

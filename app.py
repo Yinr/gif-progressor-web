@@ -34,6 +34,7 @@ def index():
 def process():
     position = request.form['position']
     color = request.form['color']
+    width = request.form['width']
     upload = request.files.getlist("file")[0]
     print(upload)
 
@@ -57,7 +58,7 @@ def process():
     # print("File saved to to:", destination)
     upload.save(destination)
 
-    progressor = Progressor(pos=int(position), color=color)
+    progressor = Progressor(pos=int(position), color=color, width=int(width))
     progressor.handle(destination)
     if progressor:
         progressor.save(destination)
