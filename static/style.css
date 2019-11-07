@@ -55,6 +55,15 @@ body {
     margin: 10px;
 }
 
+.image-row {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.example {
+    max-height: 200px;
+}
+
 .footer {
     text-align: center;
     margin-top: 20px;
