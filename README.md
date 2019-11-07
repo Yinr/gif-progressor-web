@@ -34,6 +34,10 @@ A web application to add progress bar to a GIF file.
 
 4. Goto <http://127.0.0.1/> and enjoy
 
+## Demo
+
+<https://gif.yinr.cc/>
+
 ## License
 
 MIT License
