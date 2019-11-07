@@ -131,7 +131,7 @@
     <script src="/layui/layui.js"></script>
     <script>
         let DEFAULT_COLOR = "#ff6060cc",
-            DEFAULT_POSITION = "5",
+            DEFAULT_POSITION = "3",
             DEFAULT_WIDTH = "5";
         document.getElementById("input-position").value = "{{ position }}" || DEFAULT_POSITION;
         document.getElementById("input-color").value = "{{ color }}" || DEFAULT_COLOR;
@@ -157,8 +157,8 @@
 
             slider.render({
                 elem: '#width-slider',
-                min: 0,
-                max: 255,
+                min: 1,
+                max: 100,
                 value: parseInt(DEFAULT_WIDTH),
                 change: (value) => {
                     document.getElementById('input-width').value = value.toString();
