@@ -1,6 +1,7 @@
 # Gif Progressor Web
 
 ![license](https://img.shields.io/github/license/Yinr/gif-progressor-web?style=flat-square)
+![Docker-Build](https://github.com/Yinr/gif-progressor-web/workflows/Docker/badge.svg)
 
 Web server of [GifProgressor](https://github.com/cycoe/Gif-Progressor).
 
