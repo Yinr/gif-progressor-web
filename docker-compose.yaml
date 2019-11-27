@@ -12,3 +12,4 @@ services:
       - "80:8000"
     volumes:
       - uploads:/app/images/
+    restart: unless-stopped
