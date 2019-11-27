@@ -18,7 +18,12 @@ A web application to add progress bar to a GIF file.
 1. Download the source code
 
     ```bash
+    git clone --recurse-submodules https://github.com/Yinr/gif-progressor-web.git
+
+    ## with older versions of git(<2.13), try the following
     git clone https://github.com/Yinr/gif-progressor-web.git
+    cd gif-progressor-web
+    git submodule update --init --recursive
     ```
 
 2. Build Docker image
